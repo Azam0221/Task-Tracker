@@ -47,3 +47,68 @@ npm install
 ```
 
 3. Create a `.env` file in the root of the backend folder
+
+PORT=3001
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secret_key
+
+4. Replace `your_mongodb_atlas_connection_string` with your actual Atlas URI from MongoDB Atlas dashboard
+
+## Running the Server
+
+Development mode with hot reload:
+```bash
+npm run dev
+```
+
+Production build:
+```bash
+npm run build
+npm start
+```
+
+Server runs on `http://localhost:3001`
+
+## API Endpoints
+
+### Auth
+
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| POST | /auth/signup | Register a new user | No |
+| POST | /auth/login | Login and get token | No |
+
+### Tasks
+
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| GET | /tasks | Get all tasks for user | Yes |
+| POST | /tasks | Create a new task | Yes |
+| PATCH | /tasks/:id | Update a task | Yes |
+| DELETE | /tasks/:id | Delete a task | Yes |
+
+### Request Examples
+
+Signup
+```json
+POST /auth/signup
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+
+Create Task
+```json
+POST /tasks
+Authorization: Bearer your_token_here
+{
+  "title": "Complete assignment",
+  "description": "Submit before deadline"
+}
+```
+
+## Frontend Repository
+
+https://github.com/Azam0221/Task-Tracker-Frontend
